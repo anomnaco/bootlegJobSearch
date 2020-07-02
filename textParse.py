@@ -1,4 +1,8 @@
 import spacy
+from find_job_titles import FinderAcora
+
+finder=FinderAcora()
+
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -83,4 +87,8 @@ You’re welcome.
 doc = nlp(text)
 
 for entity in doc.ents:
-    print(entity.text, entity.label_)
+    if entity.label_ == "PERSON":
+        print(entity.text, entity.label_)
+
+jobs = finder.findall(text)
+print(jobs)
